@@ -1,9 +1,9 @@
-const data = require('./data.json')
+const data = require("./data.json");
 
 const getEpisodes = () => {
-  return data
-}
+  return data;
+};
 
 module.exports = {
   getEpisodes,
-}
+};

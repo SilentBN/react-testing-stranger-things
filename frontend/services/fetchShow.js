@@ -1,5 +1,5 @@
-import axios from 'axios';
-import stripTags from 'striptags';
+import axios from "axios";
+import stripTags from "striptags";
 
 const formatSeasons = (allEpisodes) => {
   const seasons = [
@@ -14,28 +14,29 @@ const formatSeasons = (allEpisodes) => {
     seasons[episode.season - 1].episodes.push({
       ...episode,
       summary: stripTags(episode.summary),
-      image: episode.image ? episode.image.medium : null
+      image: episode.image ? episode.image.medium : null,
     });
   });
 
   return seasons;
 };
 
-
 const fetchShow = () => {
-  return axios
-    // .get("https://api.tvmaze.com/singlesearch/shows?q=stranger+things&embed=episodes")
-    .get('http://localhost:9009/api/stranger-things/episodes')
-    .then(res => {
-      const { data } = res;
+  return (
+    axios
+      // .get("https://api.tvmaze.com/singlesearch/shows?q=stranger+things&embed=episodes")
+      .get("http://localhost:9009/api/stranger-things/episodes")
+      .then((res) => {
+        const { data } = res;
 
-      return {
-        name: data.name,
-        image: data.image,
-        summary: stripTags(data.summary),
-        seasons: formatSeasons(data._embedded.episodes)
-      };
-    });
+        return {
+          name: data.name,
+          image: data.image,
+          summary: stripTags(data.summary),
+          seasons: formatSeasons(data._embedded.episodes),
+        };
+      })
+  );
 };
 
 export default fetchShow;

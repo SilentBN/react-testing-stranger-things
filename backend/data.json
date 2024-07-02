@@ -4,11 +4,7 @@
   "name": "Stranger Things",
   "type": "Scripted",
   "language": "English",
-  "genres": [
-    "Drama",
-    "Horror",
-    "Science-Fiction"
-  ],
+  "genres": ["Drama", "Horror", "Science-Fiction"],
   "status": "Running",
   "runtime": null,
   "averageRuntime": 62,
@@ -17,9 +13,7 @@
   "officialSite": "https://www.netflix.com/title/80057281",
   "schedule": {
     "time": "",
-    "days": [
-      "Friday"
-    ]
+    "days": ["Friday"]
   },
   "rating": {
     "average": 8.5
