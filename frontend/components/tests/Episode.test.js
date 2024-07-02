@@ -29,18 +29,41 @@ describe("Episode component", () => {
   test("renders without error", () => {
     // 👉 TASK: render the component passing episode data
     // 👉 TASK: print the simulated DOM using screen.debug
+    render(<Episode episode={exampleEpisodeData} />);
+    screen.debug();
   });
   test("renders texts and alt texts correctly", () => {
     // 👉 TASK: render the component passing episode data and getting the rerender utility
+    const { rerender } = render(<Episode episode={exampleEpisodeData} />);
+
     // 👉 TASK: check that the summary renders to the DOM
+    expect(
+      screen.getByText(exampleEpisodeData.summary, { exact: false })
+    ).toBeInTheDocument();
+
     // 👉 TASK: check that the alt text "episode image" is present
+    expect(screen.getByAltText("episode image")).toBeInTheDocument();
+
     // 👉 TASK: rerender the component passing episode data lacking an image
     // ❗ Study the Episode component to understand what happens in this case
+    const noImageEpisode = { ...exampleEpisodeData, image: null };
+    rerender(<Episode episode={noImageEpisode} />);
+
     // 👉 TASK: check that the default image appears in the DOM
     // ❗ Use querySelector to select the image by its src attribute
+    const defaultImage = document.querySelector(
+      'img[src="https://i.ibb.co/2FsfXqM/stranger-things.png"]'
+    );
+    expect(defaultImage).toBeInTheDocument();
+
     // 👉 TASK: check that the "generic episode image" alt text is present
+    expect(screen.getByAltText("generic episode image")).toBeInTheDocument();
+
     // 👉 TASK: rerender the component passing an undefined episode
     // ❗ Study the Episode component to understand what happens in this case
+    rerender(<Episode episode={undefined} />);
+
     // 👉 TASK: check that the "Loading episode..." text is present
+    expect(screen.getByText("Loading episode...")).toBeInTheDocument();
   });
 });
